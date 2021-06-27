@@ -19,6 +19,14 @@ func (s *Set) Add(elem interface{}) error {
 	return nil
 }
 
+// 删除元素
+func (s *Set) Delete(elem interface{}) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
+	delete(s.data, elem)
+}
+
 // 判断是否包含元素
 func (s *Set) Contain(elem interface{}) bool {
 	s.mu.RLock()
